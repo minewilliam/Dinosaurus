@@ -1,23 +1,31 @@
+#ifndef TERRAIN_H
+#define TERRAIN_H
+
 #include "game2d.h"
-#include "vecteur.h"
 #include "obstacle.h"
-#include <ostream>
+#include "player.h"
+#include "vecteur.h"
 
 
 class Terrain
 {
-    Terrain() {}
-    Terrain(vect2d size) : _size(size) {}
+    public:
+    Terrain();
+    Terrain(Vect2d size);
     ~Terrain() {}
 
-    void setSize(vect2d v);
-    vect2d getSize();
-    void transform()
-    void draw(&ostream s);
+    void setSize(Vect2d v);
+    Vect2d getSize();
+    void transform(Vect2d v);
+    void draw(ostream &s);
 
     private:
-    vect2d _size;
+    Vecteur<Texture> _BackgroundTextures;
+    Vect2d _size;
     Obstacle _obstacleList;
     Player _player;
-    
-}
+    Vect2d _pos;
+    void drawBackground(ostream &s, Vect2d pos);
+};
+
+#endif
