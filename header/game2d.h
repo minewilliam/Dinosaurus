@@ -11,6 +11,7 @@ using namespace std;
 struct Vect2d
 {
 	void operator+=(Vect2d v) {x += v.x; y += v.y;}
+	void operator-=(Vect2d v) {x -= v.x; y -= v.y;}
     int x, y;
 };
 

@@ -14,7 +14,7 @@ class Obstacle : public List<Obstacle>
 {
 private:
 	Sprite2D _sprite2D;
-	void LocaliseVect(Vect2d v);
+	Vect2d localiseVect(Vect2d v);
 	char* _textureName;
 public:
 	Obstacle();
