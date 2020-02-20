@@ -8,10 +8,10 @@
 
 using namespace std;
 
-struct Vect2d
+struct Coord
 {
-	void operator+=(Vect2d v) {x += v.x; y += v.y;}
-	void operator-=(Vect2d v) {x -= v.x; y -= v.y;}
+	void operator+=(Coord v) {x += v.x; y += v.y;}
+	void operator-=(Coord v) {x -= v.x; y -= v.y;}
     int x, y;
 };
 
@@ -19,13 +19,13 @@ struct Sprite2D
 {
 	int height = 0;
 	int width = 0;
-	Vect2d position = {0,0};
+	Coord position = {0,0};
 };
 
 struct Texture : public Sprite2D
 {
 	Texture(char* name);
-	Texture(char* name, Vect2d size);
+	Texture(char* name, Coord size);
 	~Texture() {}
 
 	void Load();

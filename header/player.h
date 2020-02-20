@@ -14,7 +14,7 @@ class Player
     void shoot();
 
     private:
-    Vect2d Location;
+    Coord Location;
 };
 
 #endif

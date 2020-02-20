@@ -6,26 +6,22 @@
 #include "player.h"
 #include "vecteur.h"
 
-
 class Terrain
 {
     public:
-    Terrain();
-    Terrain(Vect2d size);
+    Terrain(Coord size);
     ~Terrain() {}
 
-    void setSize(Vect2d v);
-    Vect2d getSize();
-    void transform(Vect2d v);
-    void draw(ostream &s);
+    Coord getSize();
+    void transform(Coord v);
+    void draw(char** stream);
 
     private:
     Vecteur<Texture> _BackgroundTextures;
-    Vect2d _size;
-    Obstacle _obstacleList;
-    Player _player;
-    Vect2d _pos;
-    void drawBackground(ostream &s, Vect2d pos);
+    Coord _size;
+    Coord _pos;
+    char** _screenBuffer;
+    void drawBackground(char** buffer, Coord pos);
 };
 
 #endif

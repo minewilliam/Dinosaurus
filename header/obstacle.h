@@ -14,17 +14,17 @@ class Obstacle : public List<Obstacle>
 {
 private:
 	Sprite2D _sprite2D;
-	Vect2d localiseVect(Vect2d v);
+	Coord localiseVect(Coord v);
 	char* _textureName;
 public:
 	Obstacle();
-	Obstacle(Vect2d v, char* textureName) {}
+	Obstacle(Coord v, char* textureName) {}
 	~Obstacle() {}
 
 	void settexture(char* textureName);
-	void transform(Vect2d newposition);
-	void draw(ostream &os, Vect2d v);
-	bool iswithin(Vect2d v);
+	void transform(Coord newposition);
+	void draw(char** buffer, Coord v);
+	bool iswithin(Coord v);
 
 };
 

@@ -1,17 +1,15 @@
 #include "../header/terrain.h"
 #include <unistd.h>
 
-Terrain terrain;
+Level Level({100,15});
 
 int main(int argc, char** argv)
 {
-    terrain.setSize({100,15});
-    ostream &s = cout;
     while(1)
     {
-        terrain.draw(s);
+        Level.draw(cout);
         usleep(50000);
-        terrain.transform({1,0});
+        Level.transformTerrain({1,0});
     }
     return 0;
 }

@@ -15,7 +15,7 @@ Texture::Texture(char* name)
     }
 }
 
-Texture::Texture(char* name, Vect2d size)
+Texture::Texture(char* name, Coord size)
 {
     _name = name;
     width = size.x;
