@@ -18,9 +18,9 @@ private:
 	char* _textureName;
 public:
 	Obstacle();
-	Obstacle(Coord v, char* textureName) {}
+	Obstacle(Coord v, char* textureName) ;
 	~Obstacle() {}
-
+	void RandomObstacle(char);
 	void settexture(char* textureName);
 	void transform(Coord newposition);
 	void draw(char** buffer, Coord v);

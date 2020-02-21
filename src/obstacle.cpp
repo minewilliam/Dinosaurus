@@ -5,7 +5,19 @@ Obstacle::Obstacle()
     next = NULL;
     previous = NULL;
 }
+Obstacle::~Obstacle(){
+    delete []_textureName;
+}
 
+Obstacle::Obstacle(Coord v, char* textureName)
+{
+    settexture(textureName);
+    transform(v);
+}
+void Obstacle::settexture(char* textureName){
+    _textureName = textureName;
+
+}
 void Obstacle::draw(char** buffer, Coord v)
 {
     buffer[v.x][v.y] = '0';
