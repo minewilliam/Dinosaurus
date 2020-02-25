@@ -11,6 +11,8 @@
         "vector": "cpp",
         "*.ipp": "cpp",
         "bitset": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "new": "cpp",
+        "memory_resource": "cpp"
     }
 }

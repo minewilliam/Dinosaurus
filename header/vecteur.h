@@ -161,7 +161,7 @@ template <typename T>
 template <typename T>
     Vecteur<T> &Vecteur<T>::operator=(const Vecteur<T> & v)
     {
-		clone(v);
+		return clone(v);
     }
 
 template <typename T>

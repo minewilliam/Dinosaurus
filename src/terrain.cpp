@@ -1,73 +1,47 @@
 #include "../header/terrain.h"
 
-Terrain::Terrain(Coord size) : _size(size)
+Terrain::Terrain()
 {
 
-    _screenBuffer[1][2];
-    Texture* ground = new Texture((char*)("assets/groundTexture.txt"));
-    _pos = {0,0};
-    _BackgroundTextures.insert(ground);
+}
 
+Terrain::Terrain(Coord size, char* textureName)
+{
+    _sprite2D.size = size;
+    _sprite2D.position = {0,0};
+    _BackgroundTexture = Texture(textureName,{99,1});
 }
 
 Coord Terrain::getSize()
 {
-    return _size;
+    return _sprite2D.size;
 }
 
-//draws the screen from top left to bottom right.
 void Terrain::draw(char** buffer)
 {
-    printf("\033[2J");
-    printf("\033[%d;%dH", 0, 0);
-
-    //Top left corner
-    
-    //Finds first element in the list.
-    while(_obstacleList.previous != NULL)
-    {
-        _obstacleList = *_obstacleList.previous;
-    }
-    Obstacle* firstObstacle = &_obstacleList;
     Coord pos;
-    for(pos.y=0;pos.y <= _size.y; pos.y++)
+    
+    for(pos.y = 0; pos.y < _sprite2D.size.y; pos.y++)
     {
-        for(pos.x=0;pos.x <= _size.x; pos.x++)
+        for(pos.x = 0; pos.x < _sprite2D.size.x; pos.x++)
         {
-            _obstacleList = *firstObstacle;
-            
-
-            //Finds every element to the last.
-            do
-            {
-                if(_obstacleList.iswithin(pos))
-                {
-                    _obstacleList.draw(buffer, pos);
-                }
-                else
-                {
-                    if(pos.y == _size.y) drawBackground(buffer, pos);
-                }
-            }
-            while(_obstacleList.next != NULL);
-            
+            //Scrolling
+            int textureX = (pos.x+_BackgroundTexture.position.x)%_BackgroundTexture.size.x;
+            //Vertical offset
+            int levelY = (pos.y+_sprite2D.position.y-1);
+            buffer[pos.x][levelY] = _BackgroundTexture.map[textureX][pos.y];
         }
     }
 }
 
-void Terrain::drawBackground(char** buffer, Coord pos)
+//Level-location transform.
+void Terrain::setPos(Coord pos)
 {
-    int posx = (pos.x+_pos.x)%_BackgroundTextures[0].width;
-    buffer[pos.x][pos.y] = _BackgroundTextures[0].map[posx];
+    _sprite2D.position = pos;
 }
 
+//Texture-location transform, enables scrolling.
 void Terrain::transform(Coord pos)
 {
-    _pos += pos;
-    while (_obstacleList.previous != NULL);
-    do
-    {
-        _obstacleList.transform({-pos.x,pos.y});
-    } while (_obstacleList.next != NULL);
-    
+    _BackgroundTexture.position += pos;
 }

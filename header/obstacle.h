@@ -1,35 +1,33 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
-#define CAPACITE 4
 #include "game2d.h"
-static char* tab[CAPACITE] = {"assets/cactusTexture.txt","assets/cactusTexture1.txt","assets/cactusTexture2.txt","assets/cactusTexture3.txt"};
-template<typename T>
-struct List
-{
-	T *firstItem
-	int size  =0;
-};
+
+Texture randomCactus();
+
+Texture const cactusTextures[] {
+	{(char*)"assets/cactusTexture.txt",{11,8}},
+	{(char*)"assets/cactusTexture1.txt",{12,8}},
+	{(char*)"assets/cactusTexture2.txt",{8,7}},
+	{(char*)"assets/cactusTexture3.txt",{15,4}}};
+
+const int cactusTexturesAmount = sizeof(cactusTextures)/sizeof(Texture);
 
 class Obstacle : public List<Obstacle>
 {
 private:
-	Sprite2D _sprite2D;
 	Coord localiseVect(Coord v);
-	char* _textureName;
+	Texture _texture = cactusTextures[0];
 public:
-	int nombre;
-	Obstacle *next;
-	Obstacle *previous;
 	Obstacle();
-	Obstacle(Coord v, char* textureName) ;
+	Obstacle(Texture texture) ;
 	~Obstacle();
-	void RandomObstacle();
-	void RandomObstacle(char);
-	void settexture(char* textureName);
-	void transform(Coord newposition);
-	void draw(char** buffer, Coord v);
-	bool iswithin(Coord v);
 
+	Coord getSize();
+	Coord getPos();
+	void addInPlace(Obstacle* obs);
+	void setPos(Coord pos);
+	void transform(Coord newposition);
+	void draw(char** buffer, Coord bufferSize);
 };
 
 #endif

@@ -12,28 +12,33 @@ struct Coord
 {
 	void operator+=(Coord v) {x += v.x; y += v.y;}
 	void operator-=(Coord v) {x -= v.x; y -= v.y;}
+	Coord operator+(const Coord v) {return {x + v.x , y + v.y};}
     int x, y;
 };
 
 struct Sprite2D
 {
-	int height = 0;
-	int width = 0;
+	Coord size = {0,0};
 	Coord position = {0,0};
+};
+
+template<typename T>
+struct List
+{
+	T* next = NULL;
+    T* previous = NULL;
 };
 
 struct Texture : public Sprite2D
 {
-	Texture(char* name);
 	Texture(char* name, Coord size);
 	~Texture() {}
 
-	void Load();
-	void setName(char* name) {_name = name;}
 	char* getName() {return _name;}
-	Vecteur<char> map;
+	char** map;
 
 	private:
+	void load();
 	char* _name;
 };
 
