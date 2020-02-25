@@ -15,11 +15,10 @@ const int cactusTexturesAmount = sizeof(cactusTextures)/sizeof(Texture);
 class Obstacle : public List<Obstacle>
 {
 private:
-	Coord localiseVect(Coord v);
 	Texture _texture = cactusTextures[0];
 public:
 	Obstacle();
-	Obstacle(Texture texture) ;
+	Obstacle(Texture texture);
 	~Obstacle();
 
 	Coord getSize();

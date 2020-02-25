@@ -40,6 +40,7 @@ void Level::init()
     _terrain.setPos({0,_size.y});
     _obstacle = new Obstacle(cactusTextures[0]);
     _obstacle->setPos({_size.x,_size.y-_obstacle->getSize().y+1});
+    _player.setPos({10,_size.y-_player.getSize().y+1});
 }
 
 void Level::destroyBuffer()
@@ -129,6 +130,7 @@ void Level::draw()
         obstacleList->draw(_screenBuffer,_size);
     } while ((obstacleList = obstacleList->next) != NULL);
 
+    _player.draw(_screenBuffer,_size);
 
     if(_score-_lastObstacle > 60)
     {

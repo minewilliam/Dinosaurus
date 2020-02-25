@@ -5,7 +5,6 @@
 #include "terrain.h"
 #include "player.h"
 #include "obstacle.h"
-#include "controller.h"
 #include <unistd.h>
 
 class Level
@@ -26,7 +25,6 @@ class Level
     Obstacle* _obstacle;
     Player _player;
     Terrain _terrain;
-    Controller _controller;
     Coord _size;
     int _score;
     int _lastObstacle;

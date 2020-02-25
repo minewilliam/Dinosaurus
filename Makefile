@@ -3,7 +3,7 @@
 
 CC = g++
 CFLAGS = -g -Wall
-SRCS = src/main.cpp src/game2d.cpp src/terrain.cpp src/obstacle.cpp src/controller.cpp src/level.cpp
+SRCS = src/main.cpp src/game2d.cpp src/terrain.cpp src/obstacle.cpp src/controller.cpp src/level.cpp src/player.cpp
 PROG = dinosaurus
 
 all: $(PROG)
