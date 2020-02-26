@@ -87,6 +87,7 @@ void Level::start()
 {
     _loop = true;
     run();
+   // thread allo (&Player::run,&_player);
 }
 
 void Level::stop()
@@ -102,6 +103,7 @@ void Level::run()
         usleep(10000);
         _score++;
         transformTerrain({1,0});
+        _player.run();
     }
 }
 

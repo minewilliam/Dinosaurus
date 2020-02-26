@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-
+    
 }
 
 Player::~Player()
@@ -13,10 +13,34 @@ Player::~Player()
 //Thread
 void Player::run()
 {
+    int etatTemp;
+  //  while(1)
+  //  {
+        _Controller.ReadPhoneme();
+        etatTemp=_Controller.getEtat();
 
+        switch (etatTemp){
+            case Nothing: 
+                break;
+            case Jump: jump();
+                break;
+            case Duck: duck();
+                break;
+            case Quit:exit(0);
+                break;
+            default: 
+                break;
+        }
+ //   }
 }
 
 void Player::jump()
+{
+    _texture.position.y-=5;
+    usleep(500000);
+    _texture.position.y+=5;
+}
+void Player::duck()
 {
 
 }
