@@ -8,7 +8,8 @@ Texture const cactusTextures[] {
 	{(char*)"assets/cactusTexture.txt",{11,8}},
 	{(char*)"assets/cactusTexture1.txt",{12,8}},
 	{(char*)"assets/cactusTexture2.txt",{8,7}},
-	{(char*)"assets/cactusTexture3.txt",{15,4}}};
+	{(char*)"assets/cactusTexture3.txt",{15,4}},
+	{(char*)"assets/batTexture.txt",{15,4}}};
 
 const int cactusTexturesAmount = sizeof(cactusTextures)/sizeof(Texture);
 
@@ -21,6 +22,7 @@ public:
 	Obstacle(Texture texture);
 	~Obstacle();
 
+	bool isFlying();
 	Coord getSize();
 	Coord getPos();
 	void addInPlace(Obstacle* obs);

@@ -16,29 +16,27 @@ int Controller::getEtat()
     return etatTouche;
 }
 
-void Controller:: ReadPhoneme()
+void Controller::ReadPhoneme()
 {
     if(_kbhit())
     {
-        cin>>PhonemeActif;
+        cin >> PhonemeActif;
+        cin.clear();
+        if(PhonemeActif=='s')
+        {
+            etatTouche=Duck;
+        }
+        if(PhonemeActif=='w')
+        {
+            etatTouche = Jump;
+        }
     }
-
-    if(PhonemeActif=='w')
-    {
-        etatTouche = Jump;
-    }
-    
-    if(PhonemeActif=='s')
-    {
-        etatTouche=Duck;
-        
-    }
-
 
 }
 void Controller::resetPhoneme()
 {
-    PhonemeActif=0;
+    PhonemeActif = 0;
+    etatTouche = Nothing;
 }
 
 //regarde si il y a une touche qui a ete pesee au clavier
@@ -60,6 +58,10 @@ int Controller::_kbhit()
     }
 
     int bytesWaiting;
-    ioctl(STDIN, FIONREAD, &bytesWaiting);
+    ioctl(STDIN,FIONREAD, &bytesWaiting);
+    if(bytesWaiting)
+    {
+        int x = 0;
+    }
     return bytesWaiting;
 }

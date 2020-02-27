@@ -4,21 +4,22 @@
 #include <thread>
 #include "game2d.h"
 #include "controller.h"
+#define MAX_JUMP_HEIGHT 12
 
 class Player
 {
     private:
-    Texture _texture = Texture((char*)"assets/playerTexture.txt",{19,9});
-
+    Texture Player_Texture = Texture((char*)"assets/playerTexture.txt",{19,9});
+    Texture Player_Ducked = Texture((char*)"assets/playerDucked.txt",{23,6});
+    Texture _texture = Player_Texture;
+    thread _playerThread;
     Controller _Controller=Controller();
-
-    
 
     public:
     Player();
     ~Player();
 
-    void run();
+    static void run(Player *p);
     void jump();
     void duck();
     void shoot();
@@ -27,7 +28,7 @@ class Player
     Coord getPos();
     void setPos(Coord pos);
 
-    void draw(char** buffer, Coord bufferSize);
+    bool draw(char** buffer, Coord bufferSize);
 };
 
 #endif

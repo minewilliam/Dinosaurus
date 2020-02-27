@@ -7,7 +7,7 @@ using namespace std;
 
 Texture randomCactus()
 {
-	return cactusTextures[random()%(cactusTexturesAmount)];
+    return cactusTextures[rand()%(cactusTexturesAmount)];
 }
 
 Obstacle::Obstacle()
@@ -34,6 +34,12 @@ Obstacle::~Obstacle()
             next->previous = NULL;
         }
     }
+}
+
+bool Obstacle::isFlying()
+{
+    Texture t = cactusTextures[4];
+    return (_texture.getName() == t.getName());
 }
 
 void Obstacle::addInPlace(Obstacle* obs)

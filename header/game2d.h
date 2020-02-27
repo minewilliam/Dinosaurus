@@ -5,8 +5,12 @@
 #include <iostream>
 #include <ctime>
 #include "vecteur.h"
+#include <random>
+#include <pthread.h>
 
 using namespace std;
+
+int customRand();
 
 struct Coord
 {

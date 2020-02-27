@@ -32,3 +32,5 @@
 *.app
 
 dinosaurus
+
+.vscode/settings.json

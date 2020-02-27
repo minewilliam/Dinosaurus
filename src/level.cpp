@@ -93,6 +93,9 @@ void Level::start()
 void Level::stop()
 {
     _loop = false;
+    char c;
+    cin >> c;
+    exit(0);
 }
 
 void Level::run()
@@ -100,16 +103,15 @@ void Level::run()
     while(_loop)
     {
         draw();
-        usleep(10000);
+        usleep(10000/(1+_score*LEVEL_ACCEL));
         _score++;
         transformTerrain({1,0});
-        _player.run();
     }
 }
 
 void Level::draw()
 {
-
+    bool alive = true;
     //Resets screen
     printf("\033[2J");
     printf("\033[%d;%dH", 0, 0);
@@ -132,7 +134,7 @@ void Level::draw()
         obstacleList->draw(_screenBuffer,_size);
     } while ((obstacleList = obstacleList->next) != NULL);
 
-    _player.draw(_screenBuffer,_size);
+    alive = _player.draw(_screenBuffer,_size);
 
     if(_score-_lastObstacle > 60)
     {
@@ -142,7 +144,15 @@ void Level::draw()
             obstacleList = _obstacle;
             while(obstacleList->next != NULL) obstacleList = obstacleList->next;
             Obstacle* newObstacle = new Obstacle(randomCactus());
-            newObstacle->setPos({_size.x,_size.y-newObstacle->getSize().y+1});
+            if(newObstacle->isFlying())
+            {
+                newObstacle->setPos({_size.x,_size.y-newObstacle->getSize().y-5});
+            }
+            else
+            {
+                newObstacle->setPos({_size.x,_size.y-newObstacle->getSize().y+1});
+            }
+            
             obstacleList->addInPlace(newObstacle);
         }
     } 
@@ -160,6 +170,8 @@ void Level::draw()
         }
         cout << endl;
     }
+
+    if(!alive) stop();
 }
 
 void Level::transformTerrain(Coord v)
