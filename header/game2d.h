@@ -10,8 +10,6 @@
 
 using namespace std;
 
-int customRand();
-
 struct Coord
 {
 	void operator+=(Coord v) {x += v.x; y += v.y;}

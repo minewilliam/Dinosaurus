@@ -59,9 +59,5 @@ int Controller::_kbhit()
 
     int bytesWaiting;
     ioctl(STDIN,FIONREAD, &bytesWaiting);
-    if(bytesWaiting)
-    {
-        int x = 0;
-    }
     return bytesWaiting;
 }

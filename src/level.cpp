@@ -136,7 +136,7 @@ void Level::draw()
 
     alive = _player.draw(_screenBuffer,_size);
 
-    if(_score-_lastObstacle > 60)
+    if(_score-_lastObstacle > 60+30*(1+_score*LEVEL_ACCEL))
     {
         if((rand()%40) == 0)
         {

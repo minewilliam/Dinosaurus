@@ -1,6 +1,6 @@
 #ifndef LEVEL_H
 #define LEVEL_H
-#define LEVEL_ACCEL 0.00005
+#define LEVEL_ACCEL 0.00002
 
 #include "game2d.h"
 #include "terrain.h"
